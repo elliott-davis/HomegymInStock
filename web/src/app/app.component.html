@@ -1,0 +1,33 @@
+<div class="containerX">
+  <mat-toolbar color="primary" class="top-nav">
+    <span>Home Gym - In Stock</span>
+    <span class="spacer"></span>
+    <div class="header-page-authStatus">
+      <span class="clickable" *ngIf="!auth.loggedIn" (click)="auth.login('/')">Log In</span>
+      <ng-template [ngIf]="auth.loggedIn">
+        <a *ngIf="!auth.loggedIn" (click)="auth.login()">Log In</a>
+        <span *ngIf="auth.loggedIn && auth.userProfile$ | async as profile">
+          {{ profile.name }}
+          <span class="divider">| </span>
+          <a class="clickable" (click)="auth.logout()">Log Out</a>
+        </span>
+      </ng-template>
+    </div>
+  </mat-toolbar>
+  <div class="colorNested box" fxLayout="column">
+    <div class="main" [fxLayout]="direction" fxLayout.xs="column" fxFlex>
+        <nav fxFlex="1 6 275px" fxFlexOrder fxFlexOrder.sm="2" fxFlexAlign="stretch">
+            <mat-nav-list class="app-nav-list">
+              <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+                <span class="full-width" *ngIf="isExpanded || isShowing">In Stock Items</span>
+                <mat-icon mat-list-icon>home</mat-icon>
+              </mat-list-item>
+            </mat-nav-list>
+        </nav>
+      <article fxFlex="3 1" fxFlexOrder fxFlexOrder.sm="1" class="main-content">
+        <router-outlet></router-outlet>
+      </article>
+    </div>
+    <app-footer>footer</app-footer>
+  </div>
+</div>

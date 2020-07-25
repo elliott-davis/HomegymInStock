@@ -1,0 +1,46 @@
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Fleck" #input>
+</mat-form-field>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Link Column -->
+  <ng-container matColumnDef="subscribe">
+    <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button *ngIf="element.isSubscribed" mat-raised-button color="warn" (click)="unsubscribe(element)">Unsubscribe</button>
+      <button *ngIf="!element.isSubscribed" mat-raised-button color="primary" (click)="newSubscription(element)">Subscribe</button>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="watchers">
+    <mat-header-cell *matHeaderCellDef> watchers </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.watchers}} </mat-cell>
+  </ng-container>
+
+  <!-- Link Column -->
+  <ng-container matColumnDef="link">
+    <mat-header-cell *matHeaderCellDef> Link </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <a href="{{element.link}}">Link</a> </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  <!-- Row shown when there is no matching data. -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+</mat-table>
