@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
       this.api.Unsubscribe(element.id, user.email, user.name).subscribe(res => {
         let newElement = element;
         newElement.isSubscribed = null;
+        newElement.watchers = element.watchers - 1;
         this.dataSource.data[element] = newElement;
       })
     })
@@ -44,6 +45,7 @@ export class HomeComponent implements OnInit {
       this.api.newSubscribe(element.id, user.email, user.name).subscribe(res => {
         let newElement = element;
         newElement.isSubscribed = 't';
+        newElement.watchers = element.watchers + 1;
         this.dataSource.data[element] = newElement;
       })
     })
