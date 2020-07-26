@@ -312,14 +312,15 @@ async function getDataFromURL(item: Items): Promise<any> {
 
 async function sendEmail(item: Items) {
   let sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail({
-    Destination: { /* required */
+    Destination: {
       ToAddresses: item.users.map(user => user.email)
     },
     Message: {
       Body: {
         Html: {
           Charset: "UTF-8",
-          Data: `<a href="${item.link}"> ${item.name}</a>`
+          Data: `<p><a href="${item.link}"> ${item.name}</a> is in stock!</p><p>Your subscription has now been removed.
+To resubscribe, go to <a href="https://homegym-instock.herokuapp.com">homegym-instock</a></p>`
         },
       },
       Subject: {
@@ -327,7 +328,7 @@ async function sendEmail(item: Items) {
         Data: `${item.name} In-Stock`
       }
     },
-    Source: 'elliott@excellent.io',
+    Source: 'no-reply@excellent.io',
   }).promise();
 
   // Handle promise's fulfilled/rejected states
