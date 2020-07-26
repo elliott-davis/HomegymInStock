@@ -1,23 +1,30 @@
 import axios from "axios";
 import cheerio from "cheerio";
+import { setIntervalAsync } from 'set-interval-async/dynamic';
 
-import {Connection, createConnection, getManager, IsNull, Not} from "typeorm";
+import {Connection, createConnection, getConnection, getManager, IsNull, Not} from "typeorm";
 import {Items} from "./src/entity/Items";
 
 import { useless_items } from './useless-items';
 import { getRequestDataFromJS } from './helper';
 import AWS from "aws-sdk";
+import {Users} from "./src/entity/User";
 
 AWS.config.update({region: 'us-east-1'});
 
 createConnection().then(async (connection: Connection) => {
     try {
-      await handleAllURLs()
+      await setIntervalAsync(async () => { await handleAllURLs() }, 30 * 1000);
     } catch (error) {
         console.log(`Error: ${error}`);
     }
 }).catch(error => console.log(error));
 
+async function wait(ms: number) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
 
 async function handleAllURLs() {
     const search_urls: Items[] = await getManager().getRepository(Items).createQueryBuilder('items')
@@ -327,6 +334,14 @@ async function sendEmail(item: Items) {
   sendPromise.then(
       function(data) {
         console.log(data.MessageId);
+        item.users.forEach(user =>  {
+          getConnection()
+            .createQueryBuilder()
+            .relation(Users, 'items')
+            .of(user.email)
+            .remove(item.id);
+            console.log(`Removed ${user.email} from ${item.name}`);
+        })
       }).catch(
       function(err) {
         console.error(err, err.stack);
