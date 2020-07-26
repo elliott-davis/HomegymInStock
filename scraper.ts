@@ -10,17 +10,7 @@ import AWS from "aws-sdk";
 
 AWS.config.update({region: 'us-east-1'});
 
-createConnection({
-  type: "postgres",
-  extra: {
-    ssl: true,
-  },
-  url: process.env.DATABASE_URL || "postgres://rsb:test@localhost:5432/homegym",
-  entities: ["src/entity/**/*.ts"],
-  subscribers: ["src/subscriber/**/*.ts"],
-  migrations: ["src/migrations/**/*.ts"],
-  synchronize: true
-}).then(async (connection: Connection) => {
+createConnection().then(async (connection: Connection) => {
     try {
       await handleAllURLs()
     } catch (error) {

@@ -36,17 +36,7 @@ let useSSL = false
 //   useSSL = true;
 // }
 
-createConnection({
-  type: "postgres",
-  extra: {
-    ssl: useSSL,
-  },
-  url: process.env.DATABASE_URL || "postgres://rsb:test@localhost:5432/homegym",
-  entities: ["src/entity/**/*.ts"],
-  subscribers: ["src/subscriber/**/*.ts"],
-  migrations: ["src/migrations/**/*.ts"],
-  synchronize: true
-}).then(connection => {
+createConnection().then(connection => {
   const port = process.env.PORT || 1337
 // Sets server port and logs message on success
   app.listen(port, () => {
