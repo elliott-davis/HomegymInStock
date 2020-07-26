@@ -320,7 +320,8 @@ async function sendEmail(item: Items) {
         Html: {
           Charset: "UTF-8",
           Data: `<p><a href="${item.link}"> ${item.name}</a> is in stock!</p><p>Your subscription has now been removed.
-To resubscribe, go to <a href="https://homegym-instock.herokuapp.com">homegym-instock</a></p>`
+To resubscribe, go to <a href="https://homegym-instock.herokuapp.com">homegym-instock</a>.</p><p>If you've found this
+service useful, consider helping me cover server costs (or buying me some flecks) <a href="paypal.me/excellentio">paypal.me/excellentio</a>.</p>`
         },
       },
       Subject: {
