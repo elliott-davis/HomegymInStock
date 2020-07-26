@@ -6,11 +6,15 @@ import {Items} from "../../entity/Items";
 
 export class SubscriptionController extends CrudController {
     async create(req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response): Promise<void> {
+      await getConnection()
+        .getRepository(Users)
+        .save({ email: req.body.email, name: req.body.name });
+
         await getConnection()
             .createQueryBuilder()
-            .relation(Users, 'items')
-            .of(req.body.email)
-            .add(req.body.id);
+            .relation(Items, 'users')
+            .of(req.body.id)
+            .add(req.body.email);
         res.send('null');
         res.status(201).end();
     }
