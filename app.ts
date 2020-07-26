@@ -32,9 +32,9 @@ app.get('*', (req, res) => {
 
 // creates express http server
 let useSSL = false
-if ( process.env.DATABASE_URL) {
-  useSSL = true;
-}
+// if ( process.env.DATABASE_URL) {
+//   useSSL = true;
+// }
 
 createConnection({
   type: "postgres",
