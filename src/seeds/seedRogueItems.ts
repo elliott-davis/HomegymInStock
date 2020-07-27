@@ -8,11 +8,12 @@ export default class CreateItems implements Seeder {
             .createQueryBuilder()
             .insert()
             .into(Items)
-            .values([{
+            .values([
+              {
                 type: "multi",
                 name: "Rogue Bumper Plates by Hi-Temp",
                 link: "https://www.roguefitness.com/rogue-hi-temp-bumper-plates"
-            },
+              },
                 {
                     type: "multi",
                     name: "Rogue HG 2.0 Bumper Plates",
@@ -774,6 +775,7 @@ export default class CreateItems implements Seeder {
                     link: "https://www.roguefitness.com/rogue-32-mm-squat-bar"
                 }
             ])
-            .execute()
+          .onConflict(`("link") DO NOTHING`)
+          .execute()
     }
 }

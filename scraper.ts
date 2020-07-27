@@ -298,6 +298,11 @@ async function getDataFromURL(item: Items): Promise<any> {
       items = getRequestDataFromJS(response.data, "RogueColorSwatches", 2);
     } else if (item.type === "custom") {
       items = getRequestDataFromJS(response.data, "ColorSwatches");
+    } else if (item.type === "ironmaster") {
+      items[0] = {};
+      items[0]["name"] = $(".product_title").text();
+      items[0]["price"] = "N/A";
+      items[0]["in_stock"] = $("span.stock").text();
     }
     // Just one item in a page
     else {

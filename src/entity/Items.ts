@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMany} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMany, Index} from 'typeorm';
 import {Users} from "./User";
 import {Products} from "./Products";
 
@@ -7,6 +7,7 @@ export class Items {
     @PrimaryGeneratedColumn()
     id!: number;
 
+    @Index()
     @Column({type: "text"})
     name!: string;
 
