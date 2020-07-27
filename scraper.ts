@@ -53,7 +53,9 @@ async function handleAllURLs() {
       // Out of stock
       if (
         singleItem["in_stock"].indexOf("Notify Me") >= 0 ||
-        singleItem["in_stock"].indexOf("Out of Stock") >= 0
+        singleItem["in_stock"].indexOf("Out of Stock") >= 0 ||
+        singleItem["in_stock"].indexOf("OUT OF STOCK") >= 0 ||
+        singleItem["in_stock"] === ''
       ) {
         // Cross emoji
         avail = decodeURI("\u274C");
