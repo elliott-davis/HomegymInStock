@@ -33,7 +33,7 @@
   <!-- Link Column -->
   <ng-container matColumnDef="link">
     <mat-header-cell *matHeaderCellDef> Link </mat-header-cell>
-    <mat-cell *matCellDef="let element"> <a href="{{element.link}}">Link</a> </mat-cell>
+    <mat-cell *matCellDef="let element"> <a href="{{element.link}}" target="_blank">Link</a> </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
