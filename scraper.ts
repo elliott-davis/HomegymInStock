@@ -315,7 +315,7 @@ async function getDataFromURL(item: Items): Promise<any> {
 async function sendEmail(item: Items) {
   let sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail({
     Destination: {
-      ToAddresses: item.users.map(user => user.email)
+      BccAddresses: item.users.map(user => user.email)
     },
     Message: {
       Body: {
