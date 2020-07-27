@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from "../api.service";
 import {AuthService} from "../auth/auth.service";
 import {MatTableDataSource} from "@angular/material/table";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import {MatTableDataSource} from "@angular/material/table";
 export class HomeComponent implements OnInit {
   displayedColumns: string[] = ['name', 'watchers', 'link'];
   dataSource = new MatTableDataSource([]);
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private auth: AuthService, private api: ApiService) { }
 
@@ -21,7 +23,10 @@ export class HomeComponent implements OnInit {
       }
     })
 
-    this.api.listItems().subscribe(res => this.dataSource = new MatTableDataSource(res));
+    this.api.listItems().subscribe(res => {
+      this.dataSource.data = res;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   applyFilter(event: Event) {

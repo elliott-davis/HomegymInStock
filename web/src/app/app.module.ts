@@ -18,6 +18,7 @@ import { ExternalApiComponent } from './external-api/external-api.component';
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         HttpClientModule,
         MatButtonModule,
         MatInputModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatSortModule
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,8 +2,8 @@
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Fleck" #input>
 </mat-form-field>
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- Link Column -->
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <!-- Subscribe Column -->
   <ng-container matColumnDef="subscribe">
     <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
     <mat-cell *matCellDef="let element">
@@ -14,19 +14,19 @@
 
   <!-- Name Column -->
   <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="watchers">
-    <mat-header-cell *matHeaderCellDef> watchers </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> watchers </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.watchers}} </mat-cell>
   </ng-container>
 
