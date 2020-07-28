@@ -168,12 +168,12 @@ async function handleAllURLs() {
 // Parses HTML from URL and returns data structure containing relevent data
 async function getDataFromURL(item: Items): Promise<any> {
   try {
-    let response = await axios.get(item.link);
+    let response = await axios.get(item.link, { headers: { 'User-Agent': 'HomeGym-InStock' }  });
     let redirect_count = response.request._redirectable._redirectCount;
 
     // console.log("Looking for: " + item);
     // console.log(redirect_count);
-    // console.log("Web scraping data from: " + item_link);
+    // console.log("Web scraping data from: " + item.link);
     let $ = cheerio.load(response.data);
     let items: any[] = [];
 
