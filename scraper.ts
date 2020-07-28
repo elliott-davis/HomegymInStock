@@ -40,8 +40,11 @@ async function handleAllURLs() {
     let write_item_str = "";
     let in_stock_count = 0;
     let rand_string = Math.random().toString(36).substring(7);
-
     // Loop through each item on page
+    if (data === undefined ){
+      console.log("Item undefined: ", item);
+      continue
+    }
     data.forEach((singleItem: any) => {
       let avail = decodeURI("\u2705");
 
