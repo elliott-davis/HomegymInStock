@@ -10,7 +10,7 @@ export class OverviewController extends CrudController {
 
   async read(req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response): Promise<void> {
     const subscriptions = await getConnection().manager.query('SELECT COUNT(distinct "usersEmail") as "subscribers" FROM "items_users_users"');
-    res.send(subscriptions)
+    res.send(subscriptions[0])
   }
 
   public update(req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response): void {
