@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
 import { CrudController } from '../CrudController';
-import {getConnection, getManager, IsNull, Not} from 'typeorm';
+import { getManager } from 'typeorm';
 import { Users } from'../../entity/User';
-import {Items} from "../../entity/Items";
-import {ItemWatchers} from "../../entity/ItemWatchers";
+import { Items } from "../../entity/Items";
 
 export class ItemsController extends CrudController {
     async create(req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response): Promise<void> {

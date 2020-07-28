@@ -7,7 +7,7 @@ import "reflect-metadata";
 import express from "express";
 import { createConnection } from 'typeorm';
 
-import {itemsRouter, subscriptionRouter} from './src/routes';
+import {itemsRouter, subscriptionRouter, overviewRouter} from './src/routes';
 import {authCheck, authOptional} from "./src/auth";
 import path from "path";
 const app = express();
@@ -23,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'web/dist/homegym-stock-service')));
 
 expressRouter.use('/items', authOptional, itemsRouter)
 expressRouter.use('/subscription', authCheck, subscriptionRouter)
+expressRouter.use('/overview', overviewRouter)
 app.use('/api', expressRouter);
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

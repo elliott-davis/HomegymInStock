@@ -14,11 +14,13 @@ import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
 import {HttpClientModule} from "@angular/common/http";
-import { ExternalApiComponent } from './external-api/external-api.component';
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
+import { ItemsComponent } from './items/items.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -26,24 +28,26 @@ import { MatSortModule } from '@angular/material/sort';
     HomeComponent,
     ProfileComponent,
     FooterComponent,
-    ExternalApiComponent
+    ItemsComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        FlexLayoutModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatListModule,
-        MatIconModule,
-        MatTableModule,
-        HttpClientModule,
-        MatButtonModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatSortModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatTableModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSortModule,
+    MatCardModule,
+    MatExpansionModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express';
 import { subscriptionController } from '../../controllers';
 import { body, validationResult } from 'express-validator';
-import { authCheck } from '../../auth';
 
 export const router = express.Router({
     strict: true

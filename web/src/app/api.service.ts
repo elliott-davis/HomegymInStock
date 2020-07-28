@@ -30,4 +30,8 @@ export class ApiService {
   Unsubscribe(id: number, email: string, name: string): Observable<any> {
     return this.http.request('delete', '/api/subscription', {body: {id, email, name}} );
   }
+
+  overview(): Observable<any> {
+    return this.http.get('api/overview');
+  }
 }

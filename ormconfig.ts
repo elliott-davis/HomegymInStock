@@ -5,6 +5,7 @@ export = {
     subscribers: ["src/subscriber/**/*.ts"],
     migrations: ["src/migrations/**/*.ts"],
     synchronize: true,
+    logging: true,
     cli: {
       entitiesDir: "src/entity",
       migrationsDir: "src/migration",

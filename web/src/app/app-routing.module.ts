@@ -5,7 +5,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {InterceptorService} from "./interceptor.service";
-import {ExternalApiComponent} from "./external-api/external-api.component";
+import {ItemsComponent} from "./items/items.component";
 
 const routes: Routes = [
   {
@@ -14,8 +14,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'external-api',
-    component: ExternalApiComponent,
+    path: 'items',
+    component: ItemsComponent,
     canActivate: [AuthGuard]
   },
   {

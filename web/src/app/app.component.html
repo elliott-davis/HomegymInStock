@@ -18,9 +18,13 @@
     <div class="main" [fxLayout]="direction" fxLayout.xs="column" fxFlex>
         <nav fxFlex="1 6 275px" fxFlexOrder fxFlexOrder.sm="2" fxFlexAlign="stretch">
             <mat-nav-list class="app-nav-list">
-              <mat-list-item class="active">
-                <span class="full-width">Items</span>
+              <mat-list-item [routerLink]="['/']" routerLinkActive="active">
+                <span class="full-width">Home</span>
                 <mat-icon mat-list-icon>home</mat-icon>
+              </mat-list-item>
+              <mat-list-item [routerLink]="['/items']" routerLinkActive="active">
+                <span class="full-width">Items</span>
+                <mat-icon mat-list-icon>apps</mat-icon>
               </mat-list-item>
               <mat-list-item>
                 <a href="https://github.com/elliott-davis/HomegymInStock" class="full-width">GitHub</a>

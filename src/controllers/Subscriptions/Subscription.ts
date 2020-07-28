@@ -36,4 +36,14 @@ export class SubscriptionController extends CrudController {
         res.send('null')
         res.status(200)
     }
+    async summary(req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response): Promise<void> {
+      const subscriptions = await getConnection()
+        .getRepository(Items)
+        .createQueryBuilder('items')
+        .leftJoinAndSelect('items.users', 'user')
+        .select('COUNT(users.email)', 'subscribers')
+        .groupBy('items.id')
+        .getRawOne();
+      res.send(subscriptions)
+    }
 }
